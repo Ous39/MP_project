@@ -1,0 +1,582 @@
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+import mysql.connector
+
+# app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')  # Default is 'templates'
+app.config['SECRET_KEY'] = 'your-secret-key-here'
+
+# Configure MySQL connection
+db_config = {
+    'user': 'root',       # Update with your MySQL username
+    'password': '123456', # Update with your MySQL password
+    'host': 'localhost',
+    'database': 'LiteraryHub'  # Update with your MySQL database name
+}
+
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+
+# Custom time_ago filter
+def time_ago(dt):
+    now = datetime.utcnow()
+    diff = now - dt
+    periods = [
+        (diff.days // 365, 'year', 'years'),
+        (diff.days // 30, 'month', 'months'),
+        (diff.days // 7, 'week', 'weeks'),
+        (diff.days, 'day', 'days'),
+        (diff.seconds // 3600, 'hour', 'hours'),
+        (diff.seconds // 60, 'minute', 'minutes'),
+        (diff.seconds, 'second', 'seconds'),
+    ]
+    for period, singular, plural in periods:
+        if period >= 1:
+            return f"{period} {singular if period == 1 else plural} ago"
+    return "just now"
+
+# Register the filter
+app.jinja_env.filters['time_ago'] = time_ago
+
+class User(UserMixin):
+    def __init__(self, id, username, email, password):
+        self.id = id
+        self.username = username
+        self.email = email
+        self.password = password
+
+def get_db_connection():
+    return mysql.connector.connect(**db_config)
+
+@login_manager.user_loader
+def load_user(user_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM user WHERE id = %s", (user_id,))
+    user_data = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    if user_data:
+        return User(id=user_data['id'], username=user_data['username'], email=user_data['email'], password=user_data['password'])
+    return None
+
+@app.route('/')
+def home():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM post ORDER BY date_posted DESC")
+    posts = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('home.html', posts=posts)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        # Handle form submission
+        name = request.form['name']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
+        # Process the data (e.g., send an email or save to database)
+        flash('Your message has been sent!', 'success')
+        return redirect(url_for('home'))
+
+    return render_template('contact.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        hashed_password = generate_password_hash(password)
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO user (username, email, password) VALUES (%s, %s, %s)", 
+                       (username, email, hashed_password))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        
+        flash('Your account has been created!', 'success')
+        return redirect(url_for('login'))
+    
+    return render_template('register.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM user WHERE email = %s", (email,))
+        user_data = cursor.fetchone()
+        cursor.close()
+        conn.close()
+
+        if user_data and check_password_hash(user_data['password'], password):
+            user = User(id=user_data['id'], username=user_data['username'], email=user_data['email'], password=user_data['password'])
+            login_user(user)
+            flash('Login successful!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login failed. Check your email and password.', 'danger')
+    
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'success')
+    return redirect(url_for('home'))
+
+@app.route('/post/<int:post_id>')
+def post(post_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM post WHERE id = %s", (post_id,))
+    post = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return render_template('post.html', post=post)
+
+@app.route('/create', methods=['GET', 'POST'])
+@login_required
+def create():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        category = request.form['category']
+        user_id = current_user.id
+        
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO post (title, content, category, user_id) VALUES (%s, %s, %s, %s)", 
+                       (title, content, category, user_id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        
+        flash('Your post has been created!', 'success')
+        return redirect(url_for('home'))
+    return render_template('create.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+    {% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">About LiteraryHub</h2>
+    
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Our Mission</h5>
+                    <p class="card-text">
+                        At LiteraryHub, we aim to foster a community for writers and readers alike. Our mission is to provide a platform where creativity flourishes and stories come to life.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">What We Offer</h5>
+                    <ul class="card-text">
+                        <li><strong>Diverse Content:</strong> Explore a wide range of genres including fiction, non-fiction, poetry, and essays.</li>
+                        <li><strong>Community Engagement:</strong> Join discussions, share feedback, and connect with fellow literature enthusiasts.</li>
+                        <li><strong>Writing Resources:</strong> Access articles, tips, and tools to help enhance your writing skills.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Get Involved</h5>
+                    <p class="card-text">
+                        We invite you to join our community! Sign up to submit your own stories, comment on posts, and engage with others. Together, let's celebrate the art of writing and storytelling.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Contact Us</h5>
+                    <p class="card-text">
+                        If you have any questions or feedback, feel free to reach out through our <a href="{{ url_for('contact') }}">contact page</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="text-center mb-4">Our Team</h3>
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 text-center shadow-sm">
+                <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto" alt="Team Member 1">
+                <div class="card-body">
+                    <h5 class="card-title">Alice Johnson</h5>
+                    <p class="card-text">Founder & Chief Editor</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 text-center shadow-sm">
+                <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto" alt="Team Member 2">
+                <div class="card-body">
+                    <h5 class="card-title">Bob Smith</h5>
+                    <p class="card-text">Content Manager</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 text-center shadow-sm">
+                <img src="/logo.png" class="card-img-top rounded-circle mx-auto" alt="Team Member 3">
+                <div class="card-body">
+                    <h5 class="card-title">Catherine Lee</h5>
+                    <p class="card-text">Marketing Specialist</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 text-center shadow-sm">
+                <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto" alt="Team Member 4">
+                <div class="card-body">
+                    <h5 class="card-title">David Brown</h5>
+                    <p class="card-text">Community Manager</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literary Hub - {% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">LiteraryHub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="/create"><i class="fas fa-plus-circle"></i> New Post</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Register</a></li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <button id="theme-toggle" class="nav-link">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block hero %}{% endblock %}
+
+    <div class="container my-5">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>LiteraryHub</h5>
+                    <p class="text-muted">Where words come to life</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/about" class="text-white">About</a></li>
+                        <li><a href="/contact" class="text-white">Contact</a></li>
+                        <li><a href="/privacy" class="text-white">Privacy Policy</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Connect</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <p class="mb-0">&copy; 2023 LiteraryHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.querySelector('i').classList.toggle('fa-sun');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+        
+        // Initialize theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.querySelector('i').classList.add('fa-sun');
+        }
+        </script>
+</body>
+</html>
+
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Contact Us</h2>
+    <p class="text-center">We'd love to hear from you! Please fill out the form below with your questions or feedback.</p>
+
+    <div class="form-container">
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Subject</label>
+                <input type="text" class="form-control" name="subject" required>
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-custom w-100">Send Message</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Create a New Post</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Content</label>
+            <textarea class="form-control" name="content" rows="4" required></textarea>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">Category</label>
+            <input type="text" class="form-control" name="category" required>
+        </div>
+        <button type="submit" class="btn btn-custom w-100">Publish</button>
+    </form>
+</div>
+{% endblock %}
+
+
+
+{% extends "base.html" %}
+
+{% block hero %}
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="hero-title">Welcome to LiteraryHub</h1>
+        <p class="hero-text">Discover captivating stories, profound poems, and insightful articles</p>
+        <form class="d-flex justify-content-center mb-4">
+            <div class="input-group" style="max-width: 600px;">
+                <input type="text" class="form-control" placeholder="Search writings..." aria-label="Search writings">
+                <button class="btn btn-custom" type="button" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-5">Latest Publications</h2>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card post-card h-100 shadow-sm border-light">
+                <img src="{{ post.image_url or 'https://via.placeholder.com/400x200' }}" class="card-img-top" alt="{{ post.title }}">
+                <div class="card-body position-relative">
+                    <span class="category-badge">{{ post.category|title }}</span>
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text text-muted">{{ post.content|truncate(120) }}</p>
+                    <p class="text-muted"><small>Approx. {{ (post.content|length / 200)|round(0, 'ceil') }} min read</small></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{ url_for('post', post_id=post.id) }}" class="btn btn-custom">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <small class="text-muted">{{ post.date_posted|time_ago }}</small>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <small class="text-muted">
+                        <i class="fas fa-user-edit"></i> {{ post.author.username }}
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="text-center mb-4">Welcome Back</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" name="email" required>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-custom w-100">Sign In</button>
+        <p class="text-center mt-3">
+            New here? <a href="{{ url_for('register') }}" class="text-decoration-none">Create an account</a>
+        </p>
+    </form>
+</div>
+{% endblock %}
+
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Create a New Post</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Content</label>
+            <textarea class="form-control" name="content" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <input type="text" class="form-control" name="category" required>
+        </div>
+        <button type="submit" class="btn btn-custom w-100">Publish</button>
+    </form>
+</div>
+{% endblock %}
+
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="text-center mb-4">Create an Account</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" name="email" required>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-custom w-100">Register</button>
+        <p class="text-center mt-3">
+            Already have an account? <a href="{{ url_for('login') }}" class="text-decoration-none">Log in</a>
+        </p>
+    </form>
+</div>
+{% endblock %}
+
+
+

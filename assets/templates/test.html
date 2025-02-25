@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storytelling Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #343a40;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('https://source.unsplash.com/1920x1080/?nature');
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        /* Blog Section */
+        .blog {
+            text-align: center;
+        }
+
+        .post {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .post:hover {
+            transform: scale(1.05);
+        }
+
+        .post img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .testimonial {
+            border-left: 5px solid #ff4d4d;
+            padding: 10px 20px;
+            margin: 20px;
+            display: inline-block;
+            max-width: 400px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact input, .contact textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact button:hover {
+            background-color: #e03e3e;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none; /* Hide sidebar on small screens */
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav">
+            <ul>
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item">
+                    <button id="theme-toggle" class="nav-link" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+        <div>
+            <h1>Welcome to My Storytelling Blog</h1>
+            <p>Sharing insights, stories, and knowledge</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#blog" class="nav-link">Stories</a></li>
+                <li><a href="#blog" class="nav-link">Articles</a></li>
+                <li><a href="#blog" class="nav-link">Poems</a></li>
+                <li><a href="#blog" class="nav-link">Tips</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- About Section -->
+            <div class="about" id="about">
+                <h2>About Me</h2>
+                <p>Hello! I'm a passionate writer and storyteller, dedicated to sharing knowledge and experiences through my blog. Join me on this journey of exploration and learning!</p>
+            </div>
+
+            <!-- Services Section -->
+            <div class="services" id="services">
+                <h2>Services</h2>
+                <div class="service">
+                    <h3>Content Writing</h3>
+                    <p>Professional writing services for blogs, articles, and more.</p>
+                </div>
+                <div class="service">
+                    <h3>Consulting</h3>
+                    <p>Expert advice on content strategy and marketing.</p>
+                </div>
+                <div class="service">
+                    <h3>Workshops</h3>
+                    <p>Interactive sessions on writing and storytelling.</p>
+                </div>
+            </div>
+
+            <!-- Blog Section -->
+            <div class="blog" id="blog">
+                <h2>Latest Blog Posts</h2>
+                <div class="post">
+                    <img src="https://source.unsplash.com/400x300/?story" alt="Blog Post">
+                    <h3>Understanding the Art of Storytelling</h3>
+                    <p>Storytelling is a powerful tool in communication. Learn how to craft compelling narratives.</p>
+                </div>
+                <div class="post">
+                    <img src="https://source.unsplash.com/400x300/?writing" alt="Blog Post">
+                    <h3>Top Tips for Effective Writing</h3>
+                    <p>Writing is an art. Here are some tips to improve your skills and engage your audience.</p>
+                </div>
+                <div class="post">
+                    <img src="https://source.unsplash.com/400x300/?content" alt="Blog Post">
+                    <h3>The Importance of Content Marketing</h3>
+                    <p>Discover why content marketing is crucial for your business and how to implement it effectively.</p>
+                </div>
+            </div>
+
+            <!-- Testimonials Section -->
+            <div class="testimonials" id="testimonials">
+                <h2>What People Say</h2>
+                <div class="testimonial">
+                    <p>"This blog has transformed my writing skills!" - Sarah</p>
+                </div>
+                <div class="testimonial">
+                    <p>"Incredible insights and practical tips!" - John</p>
+                </div>
+                <div class="testimonial">
+                    <p>"A must-read for anyone who loves to write!" - Emily</p>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact" id="contact">
+                <h2>Contact Me</h2>
+                <form>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Storytelling Blog. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.querySelector('i').classList.toggle('fa-sun');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+
+        // Initialize theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.querySelector('i').classList.add('fa-sun');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="text-center mb-4">Welcome Back</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" name="email" required>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-custom w-100">Sign In</button>
+        <p class="text-center mt-3">
+            New here? <a href="{{ url_for('register') }}" class="text-decoration-none">Create an account</a>
+        </p>
+    </form>
+</div>
+{% endblock %}

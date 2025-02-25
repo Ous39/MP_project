@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hon. Abdoulie Njai - Serving Banjul Central">
+    <title>Hon. Abdoulie Njai | Banjul Central</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/images/central_logo.png">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .dark-mode {
+            background: #222;
+            color: #fff;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/banner.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: red;
+            margin-top: 10px;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            margin: 1rem 0;
+        }
+
+        .faq-item button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            background: #3498db;
+            color: white;
+            text-align: left;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .faq-content {
+            display: none;
+            padding: 1rem;
+            background: #f4f4f4;
+            border-left: 4px solid #3498db;
+        }
+
+        /* Live Weather */
+        .weather {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Google Map */
+        .map {
+            text-align: center;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: #3498db;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .newsletter input {
+            padding: 0.8rem;
+            border: none;
+            width: 300px;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+        }
+
+        .back-to-top.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Banjul Central</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Countdown Timer -->
+    <section class="section">
+        <h2>Upcoming Event: Community Gathering</h2>
+        <p>Countdown to our next event:</p>
+        <div class="countdown" id="countdown">Loading...</div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <h2>Meet Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <h3>Hon. Abdoulie Njai</h3>
+                <p>MP for Banjul Central</p>
+            </div>
+            <div class="team-member">
+                <h3>Jane Doe</h3>
+                <p>Community Coordinator</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <button onclick="toggleFAQ(this)">What are the office hours?</button>
+            <div class="faq-content">Monday - Friday: 9 AM - 5 PM</div>
+        </div>
+        <div class="faq-item">
+            <button onclick="toggleFAQ(this)">How can I volunteer?</button>
+            <div class="faq-content">Fill out our volunteer form in the "Get Involved" section.</div>
+        </div>
+    </section>
+
+    <!-- Google Map -->
+    <section class="map">
+        <h2>Visit Us</h2>
+        <iframe width="600" height="400" src="https://maps.google.com/maps?q=Banjul&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2>Subscribe for Updates</h2>
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+    </section>
+
+    <button class="back-to-top" id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        function updateCountdown() {
+    const eventDate = new Date("2025-02-25T09:00:00").getTime(); // Set to 3:00 PM
+    const now = new Date().getTime();
+    const difference = eventDate - now;
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerText = `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds Left`;
+}
+setInterval(updateCountdown, 1000);
+
+
+        function toggleFAQ(button) {
+            button.nextElementSibling.classList.toggle("faq-content");
+        }
+
+        const backToTop = document.getElementById("back-to-top");
+        window.addEventListener("scroll", () => {
+            backToTop.classList.toggle("show", window.scrollY > 300);
+        });
+
+        document.getElementById("dark-mode-toggle").addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+        });
+    </script>
+</body>
+</html>

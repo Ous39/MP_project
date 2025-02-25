@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hon. Abdoulie Njai - Serving Banjul Central">
+    <title>Hon. Abdoulie Njai | Banjul Central</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/images/central_logo.png">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --success-color: #27ae60;
+            --error-color: #c0392b;
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            --text-color: #fff;
+            --bg-color: #222;
+            --card-bg: #333;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .event-section {
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .countdown-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .countdown-unit {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .countdown-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .progress-container {
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .action-buttons {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap; /* Allow buttons to wrap */
+        }
+
+        .share-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        .share-btn.facebook { background: #3b5998; color: white; }
+        .share-btn.twitter { background: #1da1f2; color: white; }
+        .share-btn.whatsapp { background: #25d366; color: white; }
+
+        .reminder-form {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column; /* Stack inputs on smaller screens */
+            gap: 1rem;
+        }
+
+        input[type="email"] {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .cta-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .faq-section {
+            margin-top: 3rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 1rem 1rem;
+        }
+
+        .event-status {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column; /* Stack nav items */
+                align-items: center; /* Center nav items */
+            }
+
+            .countdown-value {
+                font-size: 1.5rem;
+            }
+
+            .cta-btn, .share-btn {
+                width: 100%; /* Full width on mobile */
+                justify-content: center; /* Center content */
+            }
+
+            .form-group {
+                flex-direction: column; /* Stack inputs on smaller screens */
+            }
+
+            .countdown-unit {
+                padding: 0.5rem; /* Adjust padding for smaller screens */
+            }
+
+            .event-status {
+                font-size: 1.2rem; /* Adjust font size */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 0.5rem; /* Smaller padding for mobile */
+            }
+
+            .event-section {
+                padding: 1rem; /* Smaller padding for mobile */
+            }
+
+            .countdown-value {
+                font-size: 1.2rem; /* Further reduce font size */
+            }
+
+            .faq-question {
+                font-size: 0.9rem; /* Smaller font size for questions */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Banjul Central</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dashboard Card for Upcoming Event -->
+    <div class="container my-5">
+        <div class="col-12 col-md-6 col-xl-4 mx-auto">
+            <div class="dashboard-card h-100" data-bs-toggle="modal" data-bs-target="#orderTrackingModal">
+                <div class="d-flex align-items-center">
+                    <div class="bg-success p-3 rounded me-3">
+                        <i class="bi bi-megaphone me-2 text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-1">Upcoming Event</h5>
+                        <p class="text-muted mb-0">View more on it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Event Details -->
+    <div class="modal fade" id="orderTrackingModal" tabindex="-1" aria-labelledby="orderTrackingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderTrackingModalLabel">Upcoming Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <main class="main-container-countdown">
+                        <section class="event-section">
+                            <h1 class="section-title">Community Gathering</h1>
+                            <img src="assets/image/giraffe.jpg" alt="Event Flyer" class="img-fluid mb-3" /> <!-- Flyer Image -->
+                            <div class="countdown-container">
+                                <p>Event Timing: <strong>February 24, 2025 @ 3:00 PM to February 24, 2025 @ 5:00 PM</strong></p>
+                                <div class="countdown" id="countdown"></div>
+                                <div class="progress-container">
+                                    <div class="progress" id="progress"></div>
+                                </div>
+                                <div class="event-status" id="event-status" aria-live="polite">Loading...</div>
+                            </div>
+                            <div class="event-details">
+                                <p>Join us for a day of community engagement and fun!</p>
+                                <div class="event-meta">
+                                    <p><i class="fas fa-map-marker-alt"></i> Central Community Hall</p>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <div class="share-buttons">
+                                    <button class="share-btn facebook" onclick="shareEvent('facebook')">
+                                        <i class="fab fa-facebook-f"></i> Share
+                                    </button>
+                                    <button class="share-btn twitter" onclick="shareEvent('twitter')">
+                                        <i class="fab fa-twitter"></i> Tweet
+                                    </button>
+                                    <button class="share-btn whatsapp" onclick="shareEvent('whatsapp')">
+                                        <i class="fab fa-whatsapp"></i> Share
+                                    </button>
+                                </div>
+                                <form class="reminder-form" id="reminder-form">
+                                    <div class="form-group">
+                                        <input type="email" id="reminder-email" required placeholder="Enter your email for reminders">
+                                        <button type="submit" class="cta-btn">
+                                            <i class="fas fa-bell"></i> Set Reminder
+                                        </button>
+                                    </div>
+                                    <div class="form-feedback" id="form-feedback"></div>
+                                </form>
+                                <a href="#" id="add-to-calendar" class="cta-btn">
+                                    <i class="fas fa-calendar-plus"></i> Add to Calendar
+                                </a>
+                            </div>
+                            <section class="faq-section">
+                                <h2 class="section-title">Frequently Asked Questions</h2>
+                                <div class="faq-grid" id="faq-grid"></div>
+                            </section>
+                        </section>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Configuration
+        const events = {
+            current: {
+                title: "Community Gathering",
+                date: "2025-02-27T15:00:00",
+                endDate: "2025-02-28T17:00:00",
+                location: "Central Community Hall"
+            }
+        };
+
+        // DOM Elements
+        const countdownEl = document.getElementById('countdown');
+        const progressEl = document.getElementById('progress');
+        const eventStatusEl = document.getElementById('event-status');
+        const reminderForm = document.getElementById('reminder-form');
+        const faqGrid = document.getElementById('faq-grid');
+        const addToCalendarBtn = document.getElementById('add-to-calendar');
+
+        // FAQ Data
+        const faqItems = [
+            {
+                question: "What is the event about?",
+                answer: "This event focuses on community engagement and bringing people together for meaningful discussions and activities."
+            },
+            {
+                question: "Where will the event be held?",
+                answer: "The event will take place at the central community hall."
+            },
+            {
+                question: "How can I register for the event?",
+                answer: "You can sign up for reminders and more information through our website."
+            }
+        ];
+
+        // Initialize FAQ
+        function initFAQ() {
+            faqItems.forEach(item => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'faq-item';
+                faqItem.innerHTML = `
+                    <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                        ${item.question}
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" hidden>${item.answer}</div>
+                `;
+                faqGrid.appendChild(faqItem);
+            });
+        }
+
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            answer.hidden = !answer.hidden;
+            button.setAttribute('aria-expanded', !answer.hidden);
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const eventDate = new Date(events.current.date).getTime();
+            const endDate = new Date(events.current.endDate).getTime();
+            const now = new Date().getTime();
+            const difference = eventDate - now;
+            const endDifference = endDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                countdownEl.innerHTML = `
+                    <div class="countdown-unit">
+                        <div class="countdown-value">${days}</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-value">${hours}</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-value">${minutes}</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-value">${seconds}</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                `;
+
+                const totalTime = eventDate - new Date(events.current.date).setHours(0, 0, 0, 0);
+                const progress = ((totalTime - difference) / totalTime) * 100;
+                progressEl.style.width = `${Math.min(progress, 100)}%`;
+                eventStatusEl.textContent = "Loading...";
+
+            } else if (endDifference > 0) {
+                // Event is ongoing
+                eventStatusEl.textContent = "Ongoing...";
+                countdownEl.innerHTML = '<div class="event-live">LIVE NOW</div>';
+            } else {
+                // Event has ended
+                eventStatusEl.textContent = "This event has ended! Stay tuned for upcoming activities!";
+                countdownEl.style.display = 'none'; // Hide countdown
+                progressEl.style.width = "100%"; // Fill progress bar
+            }
+        }
+
+        // Event Sharing
+        function shareEvent(platform) {
+            const flyerUrl = 'https://yourwebsite.com/images/flyer.png'; // Replace with the actual URL of your flyer
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(`Join us for ${events.current.title}! Check out the event flyer: ${flyerUrl}`);
+
+            const shareUrls = {
+                facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`,
+                twitter: `https://twitter.com/intent/tweet?text=${text}&url=${flyerUrl}`,
+                whatsapp: `https://api.whatsapp.com/send?text=${text} ${flyerUrl}`
+            };
+
+            window.open(shareUrls[platform.toLowerCase()], '_blank');
+        }
+
+        // Reminder Form Handling
+        reminderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('reminder-email').value;
+            const feedbackEl = document.getElementById('form-feedback');
+
+            if (validateEmail(email)) {
+                // Simulate API call
+                feedbackEl.textContent = `Reminder set for ${email}!`;
+                feedbackEl.className = 'form-feedback success';
+                reminderForm.reset();
+            } else {
+                feedbackEl.textContent = 'Please enter a valid email address';
+                feedbackEl.className = 'form-feedback error';
+            }
+        });
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Add to Calendar
+        addToCalendarBtn.addEventListener('click', () => {
+            const event = {
+                title: events.current.title,
+                start: events.current.date,
+                end: events.current.endDate,
+                location: events.current.location,
+                description: "Join us for a day of community engagement and fun!"
+            };
+            const icsContent = `
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:${event.title}
+DTSTART:${formatDateToICS(event.start)}
+DTEND:${formatDateToICS(event.end)}
+LOCATION:${event.location}
+DESCRIPTION:${event.description}
+END:VEVENT
+END:VCALENDAR
+            `;
+            const blob = new Blob([icsContent], { type: 'text/calendar' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'event.ics';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        function formatDateToICS(dateString) {
+            const date = new Date(dateString);
+            return date.toISOString().replace(/-|:|\.\d+/g, "").slice(0, 15);
+        }
+
+        // Dark Mode Toggle
+        document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // Initialize
+        initFAQ();
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>

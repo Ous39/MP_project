@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block hero %}
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="hero-title">Welcome to LiteraryHub</h1>
+        <p class="hero-text">Discover captivating stories, profound poems, and insightful articles</p>
+        <form class="d-flex justify-content-center mb-4">
+            <div class="input-group" style="max-width: 600px;">
+                <input type="text" class="form-control" placeholder="Search writings..." aria-label="Search writings">
+                <button class="btn btn-custom" type="button" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-5">Latest Publications</h2>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card post-card h-100 shadow-sm border-light">
+                <img src="{{ post.image_url or 'https://via.placeholder.com/400x200' }}" class="card-img-top" alt="{{ post.title }}">
+                <div class="card-body position-relative">
+                    <span class="category-badge">{{ post.category|title }}</span>
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text text-muted">{{ post.content|truncate(120) }}</p>
+                    <p class="text-muted"><small>Approx. {{ (post.content|length / 200)|round(0, 'ceil') }} min read</small></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{ url_for('post', post_id=post.id) }}" class="btn btn-custom">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <small class="text-muted">{{ post.date_posted|time_ago }}</small>
+                    </div>
+                </div>
+                <P>turn UEbj</P>
+                <div class="card-footer bg-transparent">
+                    <small class="text-muted">
+                        <i class="fas fa-user-edit"></i> {{ post.author.username }}
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

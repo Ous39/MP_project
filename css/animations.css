@@ -1,0 +1,46 @@
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Element Animations */
+.hero-content {
+    animation: fadeInUp 1s ease-out;
+}
+
+.timeline-item.visible {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Hover Effects */
+.hover-scale {
+    transition: transform var(--transition-speed);
+}
+
+.hover-scale:hover {
+    transform: scale(1.03);
+}
+
+/* Interactive Elements */
+.cta-button {
+    transition: all var(--transition-speed) ease;
+}
+
+.news-card,
+.timeline-content,
+.event-card {
+    transition: box-shadow var(--transition-speed);
+}
+
+.news-card:hover,
+.timeline-content:hover,
+.event-card:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}

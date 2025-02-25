@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">About LiteraryHub</h2>
+    
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Our Mission</h5>
+                    <p class="card-text">
+                        At LiteraryHub, we aim to foster a community for writers and readers alike. Our mission is to provide a platform where creativity flourishes and stories come to life.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">What We Offer</h5>
+                    <ul class="card-text">
+                        <li><strong>Diverse Content:</strong> Explore a wide range of genres including fiction, non-fiction, poetry, and essays.</li>
+                        <li><strong>Community Engagement:</strong> Join discussions, share feedback, and connect with fellow literature enthusiasts.</li>
+                        <li><strong>Writing Resources:</strong> Access articles, tips, and tools to help enhance your writing skills.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Get Involved</h5>
+                    <p class="card-text">
+                        We invite you to join our community! Sign up to submit your own stories, comment on posts, and engage with others. Together, let's celebrate the art of writing and storytelling.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Contact Us</h5>
+                    <p class="card-text">
+                        If you have any questions or feedback, feel free to reach out through our <a href="{{ url_for('contact') }}">contact page</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="text-center mb-4">Our Team</h3>
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 text-center shadow-sm">
+                <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto" alt="Team Member 1">
+                <div class="card-body">
+                    <h5 class="card-title">Alice Johnson</h5>
+                    <p class="card-text">Founder & Chief Editor</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 text-center shadow-sm">
+                <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto" alt="Team Member 2">
+                <div class="card-body">
+                    <h5 class="card-title">Bob Smith</h5>
+                    <p class="card-text">Content Manager</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 text-center shadow-sm">
+                <img src="/logo.png" class="card-img-top rounded-circle mx-auto" alt="Team Member 3">
+                <div class="card-body">
+                    <h5 class="card-title">Catherine Lee</h5>
+                    <p class="card-text">Marketing Specialist</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 text-center shadow-sm">
+                <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto" alt="Team Member 4">
+                <div class="card-body">
+                    <h5 class="card-title">David Brown</h5>
+                    <p class="card-text">Community Manager</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
