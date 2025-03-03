@@ -51,6 +51,11 @@ body {
     color: white;
     border-radius: 3px;
     cursor: pointer;
+    transition: background var(--transition-speed);
+}
+
+.accessibility-toolbar button:hover {
+    background: darken(var(--accent-color), 10%);
 }
 
 .high-contrast {
@@ -73,6 +78,7 @@ body {
     border: 1px solid var(--accent-color);
     background: transparent;
     cursor: pointer;
+    transition: background var(--transition-speed);
 }
 
 .lang-btn.active {
@@ -248,6 +254,11 @@ body {
     background: white;
     border-radius: 10px;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    transition: transform var(--transition-speed);
+}
+
+.service-card:hover {
+    transform: scale(1.05);
 }
 
 .service-card i {
@@ -415,6 +426,11 @@ body {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 1rem;
+    transition: background var(--transition-speed);
+}
+
+.donate-btn:hover {
+    background: darken(var(--success-color), 10%);
 }
 
 .payment-methods {
@@ -520,7 +536,7 @@ body {
     color: white;
     border: none;
     cursor: pointer;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, background var(--transition-speed);
     z-index: 1000;
 }
 

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>.header-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: var(--transition);
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .footer {
+        background-color: var(--gradient-blue);
+        color: white;
+        padding: 2rem 0;
+    }
+    
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 2rem;
+    }
+    
+    .footer-section {
+        flex: 1;
+        margin: 0 1rem;
+    }
+    
+    .footer-section h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .footer-bottom {
+        text-align: center;
+        padding: 1rem 0;
+        background-color: rgba(0, 0, 0, 0.1);
+    }</style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-landmark"></i>
+                Banjul Central
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="home.html" class="btn">Home</a></li>
+                    <li><a href="about.html" class="btn">About</a></li>
+                    <li><a href="events.html" class="btn">Events</a></li>
+                    <li><a href="documents.html" class="btn">Documents</a></li>
+                    <li><a href="contact.html" class="btn">Contact</a></li>
+                    <li><a href="diographa.html" class="btn">Diographa</a></li>
+                </ul>
+                <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+
+
+
+    <article id="chapter17" class="chapter">
+        <h2 class="mb-4">Chapter XVII: National Youth Development</h2>
+        <div class="toggle-section">1. Youth Participation <i class="fas fa-chevron-down"></i></div>
+        <div id="section17-1" class="section">The State recognizes the importance of youth in national development.</div>
+        <div class="toggle-section">2. Policy Consultation <i class="fas fa-chevron-down"></i></div>
+        <div id="section17-2" class="section">Youth must be consulted in policy-making affecting them.</div>
+    </article>
+
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Get Involved</h4>
+                <ul>
+                    <li><a href="contact.html">Volunteer</a></li>
+                    <li><a href="contact.html">Donate</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Banjul Central Constituency. Committed to Progress.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Show/hide sections
+$(document).on('click', '.toggle-section', function() {
+    $(this).next('.section').slideToggle(); // Toggle the section directly after the clicked toggle-section
+    $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up'); // Optional: Adjust icon if you want to show an indicator
+});
+    </script>
+</body>
+</html>

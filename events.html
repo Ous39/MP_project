@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Upcoming and past community events organized by Hon. Abdoulie Njai. Join us to make a difference!">
+    <title>Community Events | Hon. Abdoulie Njai</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="assets/images/events-bg.webp" as="image">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/central_logo.png">
+    <link rel="apple-touch-icon" href="assets/images/central_logo.png">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .events-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/images/events-bg.webp') center/cover;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .event-card {
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .events-header {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="events-header">
+        <div class="container">
+            <h1 class="display-4 mb-3">Community Events</h1>
+            <p class="lead mb-0">Join us in making a difference in our community!</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="row g-5">
+            <!-- Search and Filter Section -->
+            <div class="col-lg-12 mb-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <input type="text" class="form-control me-2" id="search" placeholder="Search events..." aria-label="Search events">
+                    <select class="form-select" id="event-category">
+                        <option value="">All Categories</option>
+                        <option value="workshop">Workshops</option>
+                        <option value="community-service">Community Service</option>
+                        <option value="health">Health Events</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Upcoming Events Section -->
+            <div class="col-lg-12">
+                <section aria-labelledby="upcoming-events-heading" class="mb-5">
+                    <h2 id="upcoming-events-heading" class="h4 mb-4">Upcoming Events</h2>
+                    <div class="row g-4" id="upcoming-events">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="event-card card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Town Hall Meeting</h5>
+                                    <p class="card-text">
+                                        <i class="fas fa-calendar-alt me-2"></i>March 10, 2025<br>
+                                        <i class="fas fa-clock me-2"></i>5:00 PM<br>
+                                        <i class="fas fa-map-marker-alt me-2"></i>Community Center, Banjul
+                                    </p>
+                                    <p id="countdown1" class="text-danger fw-bold"></p>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="event-card card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Community Clean-Up</h5>
+                                    <p class="card-text">
+                                        <i class="fas fa-calendar-alt me-2"></i>March 20, 2025<br>
+                                        <i class="fas fa-clock me-2"></i>9:00 AM<br>
+                                        <i class="fas fa-map-marker-alt me-2"></i>Main Park, Banjul
+                                    </p>
+                                    <p id="countdown2" class="text-danger fw-bold"></p>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="event-card card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Health Fair</h5>
+                                    <p class="card-text">
+                                        <i class="fas fa-calendar-alt me-2"></i>April 15, 2025<br>
+                                        <i class="fas fa-clock me-2"></i>10:00 AM<br>
+                                        <i class="fas fa-map-marker-alt me-2"></i>Community Hall, Banjul
+                                    </p>
+                                    <p id="countdown3" class="text-danger fw-bold"></p>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Past Events Carousel Section -->
+            <div class="col-lg-12 mb-5">
+                <section aria-labelledby="past-events-heading">
+                    <h2 id="past-events-heading" class="h4 mb-4">Past Events</h2>
+                    <div id="pastEventsCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row g-4">
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="event-card card h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Youth Leadership Workshop</h5>
+                                                <p class="card-text">
+                                                    <i class="fas fa-calendar-alt me-2"></i>January 25, 2025<br>
+                                                    <i class="fas fa-clock me-2"></i>3:00 PM<br>
+                                                    <i class="fas fa-map-marker-alt me-2"></i>City Library, Banjul
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="event-card card h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Cultural Festival</h5>
+                                                <p class="card-text">
+                                                    <i class="fas fa-calendar-alt me-2"></i>February 10, 2025<br>
+                                                    <i class="fas fa-clock me-2"></i>12:00 PM<br>
+                                                    <i class="fas fa-map-marker-alt me-2"></i>Central Park, Banjul
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="event-card card h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Senior Citizens’ Day</h5>
+                                                <p class="card-text">
+                                                    <i class="fas fa-calendar-alt me-2"></i>February 20, 2025<br>
+                                                    <i class="fas fa-clock me-2"></i>10:00 AM<br>
+                                                    <i class="fas fa-map-marker-alt me-2"></i>Community Center, Banjul
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row g-4">
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="event-card card h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Health Awareness Seminar</h5>
+                                                <p class="card-text">
+                                                    <i class="fas fa-calendar-alt me-2"></i>March 5, 2025<br>
+                                                    <i class="fas fa-clock me-2"></i>1:00 PM<br>
+                                                    <i class="fas fa-map-marker-alt me-2"></i>City Hall, Banjul
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="event-card card h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Environmental Awareness Day</h5>
+                                                <p class="card-text">
+                                                    <i class="fas fa-calendar-alt me-2"></i>March 12, 2025<br>
+                                                    <i class="fas fa-clock me-2"></i>10:00 AM<br>
+                                                    <i class="fas fa-map-marker-alt me-2"></i>Main Park, Banjul
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="event-card card h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Community Fundraiser</h5>
+                                                <p class="card-text">
+                                                    <i class="fas fa-calendar-alt me-2"></i>March 25, 2025<br>
+                                                    <i class="fas fa-clock me-2"></i>4:00 PM<br>
+                                                    <i class="fas fa-map-marker-alt me-2"></i>Community Center, Banjul
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#pastEventsCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#pastEventsCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Testimonials Carousel Section -->
+            <div class="col-lg-12 mb-5">
+                <section aria-labelledby="testimonials-heading">
+                    <h2 id="testimonials-heading" class="h4 mb-4">What Participants Are Saying</h2>
+                    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active text-center">
+                                <img src="assets/images/participant1.jpg" alt="Participant 1" class="rounded-circle mb-3" style="width: 100px; height: 100px;">
+                                <blockquote class="blockquote">
+                                    <p>"The Town Hall Meeting was incredibly informative. I feel more connected to my community!"</p>
+                                    <footer class="blockquote-footer">Amadou Jallow</footer>
+                                </blockquote>
+                            </div>
+                            <div class="carousel-item text-center">
+                                <img src="assets/images/participant2.jpg" alt="Participant 2" class="rounded-circle mb-3" style="width: 100px; height: 100px;">
+                                <blockquote class="blockquote">
+                                    <p>"Participating in the Community Clean-Up made me feel like I'm making a difference!"</p>
+                                    <footer class="blockquote-footer">Fatoumata Touray</footer>
+                                </blockquote>
+                            </div>
+                            <div class="carousel-item text-center">
+                                <img src="assets/images/participant3.jpg" alt="Participant 3" class="rounded-circle mb-3" style="width: 100px; height: 100px;">
+                                <blockquote class="blockquote">
+                                    <p>"The Health Fair provided such valuable information. Thank you for organizing!"</p>
+                                    <footer class="blockquote-footer">Khadija Fofana</footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Event Gallery Section -->
+            <div class="col-lg-12 mb-5">
+                <section aria-labelledby="gallery-heading">
+                    <h2 id="gallery-heading" class="h4 mb-4">Event Gallery</h2>
+                    <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row g-4">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <img src="assets/images/event1.jpg" class="card-img-top" alt="Event 1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <img src="assets/images/event2.jpg" class="card-img-top" alt="Event 2">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <img src="assets/images/event3.jpg" class="card-img-top" alt="Event 3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row g-4">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <img src="assets/images/event4.jpg" class="card-img-top" alt="Event 4">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <img src="assets/images/event5.jpg" class="card-img-top" alt="Event 5">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <img src="assets/images/event6.jpg" class="card-img-top" alt="Event 6">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Downloadable Resources Section -->
+            <div class="col-lg-12 mb-5">
+                <section aria-labelledby="resources-heading">
+                    <h2 id="resources-heading" class="h4 mb-4">Downloadable Resources</h2>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="assets/files/event-flyer.pdf" class="btn btn-outline-primary mb-2" download>Event Flyer</a>
+                        </li>
+                        <li>
+                            <a href="assets/files/health-fair-brochure.pdf" class="btn btn-outline-primary mb-2" download>Health Fair Brochure</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Registration Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Register for Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registration-form" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="reg-name" class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" id="reg-name" required>
+                            <div class="invalid-feedback">Please enter your name</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reg-email" class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" id="reg-email" required>
+                            <div class="invalid-feedback">Please enter a valid email</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reg-phone" class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" id="reg-phone" required>
+                            <div class="invalid-feedback">Please enter your phone number</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reg-event" class="form-label">Select Event *</label>
+                            <select class="form-select" id="reg-event" required>
+                                <option value="">Choose an event...</option>
+                                <option value="town-hall">Town Hall Meeting</option>
+                                <option value="clean-up">Community Clean-Up</option>
+                                <option value="health-fair">Health Fair</option>
+                            </select>
+                            <div class="invalid-feedback">Please select an event</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Registration</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container">
+            <p class="mb-0 text-center">&copy; 2025 Hon. Abdoulie Njai. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Countdown Timer for Events
+        function startCountdown(eventDate, elementId) {
+            const countdownElement = document.getElementById(elementId);
+            const countDownDate = new Date(eventDate).getTime();
+
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    countdownElement.innerHTML = "Event has started!";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+
+        // Initialize countdowns
+        startCountdown("March 10, 2025 17:00:00", "countdown1");
+        startCountdown("March 20, 2025 09:00:00", "countdown2");
+        startCountdown("April 15, 2025 10:00:00", "countdown3");
+
+        // Form Validation
+        (() => {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
