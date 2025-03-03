@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover Banjul Central Constituency - The political and cultural heart of The Gambia">
+    <meta property="og:title" content="About Banjul Central Constituency | Hon. Abdoulie Njai">
+    <meta property="og:image" content="assets/images/constituency-og.jpg">
+    
+    <title>About Banjul Central Constituency | Hon. Abdoulie Njai</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="assets/images/constituency-hero.webp" as="image">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/constituency-hero.webp') center/cover;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+            animation: zoomIn 1s ease-in-out;
+        }
+
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            background: var(--card-bg);
+            opacity: 0; /* Start hidden */
+            transform: translateY(20px); /* Start slightly below */
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            opacity: 0; /* Start hidden */
+            transform: translateY(20px); /* Start slightly below */
+        }
+
+        .testimonial {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            opacity: 0; /* Start hidden */
+            transform: translateY(20px); /* Start slightly below */
+            animation: fadeUp 1s ease-in-out; /* Animation */
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 0;
+            }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1 class="display-4 mb-3">Banjul Central Constituency</h1>
+            <p class="lead mb-0">The Political & Cultural Heart of The Gambia</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <!-- Mission and Vision -->
+        <section aria-labelledby="mission-vision-heading" class="my-5 text-center">
+            <h2 id="mission-vision-heading" class="h3 mb-4">Our Mission & Vision</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Mission</h3>
+                    <p>To empower the community through active participation, innovative programs, and sustainable development initiatives that enhance the quality of life for all residents.</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Vision</h3>
+                    <p>To be a model constituency in The Gambia, where every resident is engaged, informed, and empowered to contribute to a vibrant and inclusive society.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Stats -->
+        <section aria-labelledby="stats-heading" class="my-5">
+            <h2 id="stats-heading" class="h3 mb-4">Key Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="h2 text-primary" >250,000+</div>
+                    <p>Residents Represented</p>
+                </div>
+                <div class="stat-item">
+                    <div class="h2 text-primary">15+</div>
+                    <p>Active Community Programs</p>
+                </div>
+                <div class="stat-item">
+                    <div class="h2 text-primary">98%</div>
+                    <p>Voter Participation (2023)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Tabs -->
+        <section aria-labelledby="tabs-heading" class="my-5">
+            <h2 id="tabs-heading" class="h3 mb-4">Explore Banjul Central</h2>
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
+                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#history" aria-controls="history" aria-selected="true">History</button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#initiatives" aria-controls="initiatives" aria-selected="false">Initiatives</button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#leadership" aria-controls="leadership" aria-selected="false">Leadership</button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#events" aria-controls="events" aria-selected="false">Local Events</button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#resources" aria-controls="resources" aria-selected="false">Community Resources</button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#businesses" aria-controls="businesses" aria-selected="false">Local Businesses</button>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="history" role="tabpanel" aria-labelledby="history-tab">
+                            <h3 class="h5">History</h3>
+                            <p>Established following Gambian independence in 1965.</p>
+                            <p>Active involvement in national politics and community issues throughout the 1980s.</p>
+                            <p>Launch of various development initiatives focused on education and health in the 2000s.</p>
+                        </div>
+                        <div class="tab-pane fade" id="initiatives" role="tabpanel" aria-labelledby="initiatives-tab">
+                            <h3 class="h5">Community Initiatives</h3>
+                            <ul>
+                                <li>Health awareness campaigns</li>
+                                <li>Educational programs for youth</li>
+                                <li>Local economic development projects</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="leadership" role="tabpanel" aria-labelledby="leadership-tab">
+                            <h3 class="h5">Leadership</h3>
+                            <p>Represented by Hon. Abdoulie Njai, who actively engages with constituents to address their needs and concerns.</p>
+                        </div>
+                        <div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
+                            <h3 class="h5">Upcoming Local Events</h3>
+                            <ul>
+                                <li><strong>Community Clean-Up Day:</strong> March 15, 2025</li>
+                                <li><strong>Annual Cultural Festival:</strong> April 22, 2025</li>
+                                <li><strong>Health Fair:</strong> June 10, 2025</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="resources" role="tabpanel" aria-labelledby="resources-tab">
+                            <h3 class="h5">Community Resources</h3>
+                            <ul>
+                                <li><strong>Local Library:</strong> Access to books and learning materials.</li>
+                                <li><strong>Health Clinic:</strong> Providing essential health services to residents.</li>
+                                <li><strong>Community Center:</strong> A hub for local events and activities.</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="businesses" role="tabpanel" aria-labelledby="businesses-tab">
+                            <h3 class="h5">Local Businesses</h3>
+                            <ul>
+                                <li><strong>ABC Grocery Store:</strong> Fresh produce and daily essentials.</li>
+                                <li><strong>XYZ Restaurant:</strong> Traditional Gambian cuisine.</li>
+                                <li><strong>123 Tech Solutions:</strong> IT services and support.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Map -->
+        <section aria-labelledby="map-heading" class="my-5">
+            <h2 id="map-heading" class="h3 mb-4">Constituency Map</h2>
+            <div class="interactive-map ratio ratio-16x9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!..."
+                        loading="lazy" 
+                        title="Banjul Central Constituency Map"
+                        allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section my-5 text-center">
+            <h2 class="h3 mb-4">Watch Our Community in Action</h2>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#videoModal">
+                Watch Video
+            </button>
+
+            <!-- Video Modal -->
+            <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="videoModalLabel">Community Video</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="ratio ratio-16x9">
+                                <iframe src="https://www.youtube.com/embed/VIDEO_ID" 
+                                        title="Community Video" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Cards -->
+        <section aria-labelledby="features-heading" class="my-5">
+            <h2 id="features-heading" class="h3 mb-4">Key Features</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-wrapper mb-3">
+                                <i class="fas fa-university fa-2x text-white"></i>
+                            </div>
+                            <h3 class="h5">Government Hub</h3>
+                            <p>Home to key government institutions and administrative offices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-wrapper mb-3">
+                                <i class="fas fa-book fa-2x text-white"></i>
+                            </div>
+                            <h3 class="h5">Cultural Heritage</h3>
+                            <p>A rich tapestry of history and culture celebrated through various events.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-wrapper mb-3">
+                                <i class="fas fa-people-arrows fa-2x text-white"></i>
+                            </div>
+                            <h3 class="h5">Community Engagement</h3>
+                            <p>Active participation in community and civic activities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section aria-labelledby="testimonials-heading" class="my-5">
+            <h2 id="testimonials-heading" class="h3 mb-4">What Residents Say</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card testimonial">
+                        <div class="card-body">
+                            <p class="card-text">"Banjul Central is where our voices are heard, and our needs are met. The community initiatives have truly made a difference!"</p>
+                            <footer class="blockquote-footer">Fatou Jallow, Resident</footer>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card testimonial">
+                        <div class="card-body">
+                            <p class="card-text">"The leadership in our constituency is proactive and always available to listen to our concerns. I feel valued as a citizen."</p>
+                            <footer class="blockquote-footer">Ousman Bah, Local Business Owner</footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent News -->
+        <section aria-labelledby="news-heading" class="my-5">
+            <h2 id="news-heading" class="h3 mb-4">Recent News Updates</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card news-card">
+                        <div class="card-body">
+                            <h5 class="card-title">New Health Initiative Launched</h5>
+                            <p class="card-text">A new health campaign aimed at improving community health awareness has been launched this month.</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card news-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Cultural Festival Dates Announced</h5>
+                            <p class="card-text">The dates for this year's annual cultural festival have been announced. Join us for a celebration of our heritage!</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="my-5 text-center">
+            <h2 class="h3 mb-4">Get Involved in Your Community!</h2>
+            <p class="mb-4">Join us in making Banjul Central a better place to live. Participate in events, volunteer for community programs, and stay informed.</p>
+            <a href="#newsletter-heading" class="btn btn-primary">Subscribe to Our Newsletter</a>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section aria-labelledby="newsletter-heading" class="my-5">
+            <div class="card bg-primary text-white">
+                <div class="card-body text-center py-5">
+                    <h2 id="newsletter-heading" class="h3 mb-3">Stay Informed</h2>
+                    <p class="mb-4">Subscribe to our newsletter for constituency updates.</p>
+                    <form class="d-flex gap-2 justify-content-center" aria-label="Newsletter Signup">
+                        <input type="email" class="form-control w-auto" placeholder="Enter your email" required aria-label="Email address">
+                        <button type="submit" class="btn btn-light">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer bg-primary text-white text-center py-4">
+        <div class="container">
+            <p>&copy; 2025 Banjul Central Constituency. All Rights Reserved.</p>
+            <p>Follow us on:
+                <a href="https://facebook.com" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" class="text-white"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" class="text-white"><i class="fab fa-instagram"></i></a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const elements = document.querySelectorAll(".stat-item, .feature-card, .testimonial");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = "translateY(0)";
+                    } else {
+                        entry.target.style.opacity = 0;
+                        entry.target.style.transform = "translateY(20px)";
+                    }
+                });
+            }, { threshold: 0.2 });
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

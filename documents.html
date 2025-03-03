@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official repository of legal documents for The Gambia. Access constitutions, bills, amendments, and policy drafts.">
+    <title>Legal Documents Portal | Republic of The Gambia</title>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1a4d8f;
+            --secondary-color: #f9a825;
+            --accent-color: #2e7d32;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), #0d325e);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .document-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .document-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .document-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .nav-tabs .nav-link {
+            border: none;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .nav-tabs .nav-link.active {
+            border-bottom: 3px solid var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .timeline {
+            border-left: 2px solid var(--primary-color);
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+
+        .timeline-event {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .timeline-event::before {
+            content: "";
+            position: absolute;
+            left: -2.3rem;
+            top: 1rem;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/image/NA_logo.jpg" alt="Government Logo" height="40">
+                <span class="ms-2 fw-bold text-primary">Legal Documents Portal</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#constitutions">Constitutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bills">Bills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#amendments">Amendments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#submit">Contribute</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 mb-3">Transparent Governance</h1>
+            <p class="lead mb-4">Public access to legislative documents and policy frameworks</p>
+            
+            <!-- Advanced Search -->
+            <div class="search-card mx-auto bg-white rounded-4 p-3 shadow">
+                <div class="input-group">
+                    <input type="search" class="form-control form-control-lg" 
+                           placeholder="Search documents, bills, or amendments..." aria-label="Search">
+                    <button class="btn btn-primary btn-lg">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="filter-row mt-3 d-flex gap-2">
+                    <select class="form-select" data-filter="category">
+                        <option value="all">All Categories</option>
+                        <option value="constitution">Constitutions</option>
+                        <option value="bill">Bills</option>
+                        <option value="amendment">Amendments</option>
+                    </select>
+                    <select class="form-select" data-filter="year">
+                        <option value="all">All Years</option>
+                        <option value="2024">2024</option>
+                        <option value="2020">2020</option>
+                        <option value="1994">1994</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow-1">
+        <div class="container py-5">
+            
+            <div class="alert alert-info" id="visible-count">
+                Showing 0 of 0 documents
+            </div>
+            <!-- Constitution Timeline -->
+            <section id="constitutions" class="mb-5">
+                <h2 class="mb-4">Constitutional Documents</h2>
+                <div class="timeline">
+                    <div class="timeline-event" data-category="constitution" data-year="2024">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">2024 Draft Constitution</h3>
+                            <span class="badge bg-warning">Under Review</span>
+                        </div>
+                        <p class="text-muted">Proposed constitutional reforms for public consultation</p>
+                        <div class="btn-group">
+                            <a href="2024_draft_constitution.html" class="btn btn-sm btn-outline-primary">Read Online</a>
+                            <a href="assets/documents/LATEST-AND-FINAL-Draft-Constitution.2024-FOR-FIRST-GAZETTING-14-AUGUST-2024.pdf" class="btn btn-sm btn-primary">Download PDF</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-event" data-category="constitution" data-year="2020">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">2020 Draft Constitution</h3>
+                            <span class="badge bg-warning">Under Review</span>
+                        </div>
+                        <p class="text-muted">Current constitution of The Gambia</p>
+                        <div class="btn-group">
+                            <a href="2020_draft_constitution.html" class="btn btn-sm btn-outline-primary">Read Online</a>
+                            <a href="assets/documents/CRC+-+FINAL+DRAFT+CONSTITUTION.pdf" class="btn btn-sm btn-primary">Download PDF</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-event" data-category="constitution" data-year="1994">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">Constitution</h3>
+                            <span class="badge bg-success">Active</span>
+                        </div>
+                        <p class="text-muted">Current constitution of The Gambia</p>
+                        <div class="btn-group">
+                            <a href="constitution.html" class="btn btn-sm btn-outline-primary">Read Online</a>
+                            <a href="assets/documents/Constitution _of_the _Republic _of_The_Gambia.pdf" class="btn btn-sm btn-primary">Download PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bills Grid -->
+            <section id="bills" class="mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Recent Legislative Bills</h2>
+                    <a href="#" class="btn btn-link">View All Bills →</a>
+                </div>
+                <div class="document-grid">
+                    <div class="document-card p-4" data-category="bill" data-year="2024">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="bg-primary text-white rounded-circle p-3">
+                                <i class="mdi mdi-leaf fs-4"></i>
+                            </div>
+                            <div>
+                                <h3 class="h6 mb-0">Environmental Protection Bill</h3>
+                                <small class="text-muted">Introduced: 15 Mar 2024</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small">Comprehensive environmental conservation legislation</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-info">Committee Review</span>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="far fa-file-pdf"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="far fa-comment"></i> 12
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="document-card p-4" data-category="bill" data-year="2024">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="bg-success text-white rounded-circle p-3">
+                                <i class="mdi mdi-book fs-4"></i>
+                            </div>
+                            <div>
+                                <h3 class="h6 mb-0">Education Reform Bill</h3>
+                                <small class="text-muted">Introduced: 10 Jan 2024</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small">Legislation aimed at improving the education system</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-success">Approved</span>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="far fa-file-pdf"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="far fa-comment"></i> 8
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="document-card p-4" data-category="bill" data-year="2024">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="bg-danger text-white rounded-circle p-3">
+                                <i class="mdi mdi-hospital fs-4"></i>
+                            </div>
+                            <div>
+                                <h3 class="h6 mb-0">Healthcare Access Bill</h3>
+                                <small class="text-muted">Introduced: 5 Feb 2024</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small">Aimed at improving healthcare accessibility for all citizens</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-warning">Pending</span>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="far fa-file-pdf"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="far fa-comment"></i> 5
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Submission Section -->
+            <section id="submit" class="mb-5">
+                <div class="card border-0 shadow">
+                    <div class="card-body p-4">
+                        <h2 class="mb-4">Contribute to Legislation</h2>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="h-100 p-4 bg-light rounded-3">
+                                    <h3 class="h5 mb-3">Submit Document</h3>
+                                    <p>Contribute policy drafts, amendments, or legislative proposals</p>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#submissionModal">
+                                        Start Submission
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="h-100 p-4 bg-light rounded-3">
+                                    <h3 class="h5 mb-3">Public Consultation</h3>
+                                    <p>Participate in ongoing policy discussions and reviews</p>
+                                    <a href="#" class="btn btn-outline-primary">
+                                        View Open Consultations
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent News Section -->
+            <section id="news" class="mb-5">
+                <h2 class="mb-4">Latest News Updates</h2>
+                <div class="document-grid">
+                    <div class="document-card p-4">
+                        <h3 class="h6">New Bill on Climate Change Introduced</h3>
+                        <p class="text-muted small">A new bill addressing climate change has been introduced in the assembly. This bill aims to reduce carbon emissions significantly.</p>
+                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                    </div>
+
+                    <div class="document-card p-4">
+                        <h3 class="h6">Amendments to the Constitution Discussed</h3>
+                        <p class="text-muted small">Discussions are underway regarding proposed amendments to the constitution which will be presented to the public next month.</p>
+                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="mb-5">
+                <h2 class="mb-4">Frequently Asked Questions</h2>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                What types of documents can I find here?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                You can find constitutions, bills, amendments, and various policy drafts related to The Gambia’s legal framework.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                How can I contribute a document?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                You can submit documents by clicking on the "Contribute" section in the navigation menu and filling out the submission form.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Who can participate in public consultations?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Any citizen can participate in public consultations. Check the "Public Consultation" section for ongoing discussions.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5>Legal Portal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white-50 text-decoration-none">About</a></li>
+                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                        <li><a href="home.html" class="text-white-50 text-decoration-none">Accessibility</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50 text-decoration-none">Glossary</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Legislative Process</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Legislative Process</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Archives</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white-50 me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white-50 me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white-50"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <p class="text-center mb-0 small">&copy; 2024 Government of The Gambia. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Submission Modal -->
+    <div class="modal fade" id="submissionModal" tabindex="-1" aria-labelledby="submissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submissionModalLabel">Submit a New Document</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="document-submission" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="doc-title" class="form-label">Document Title *</label>
+                            <input type="text" class="form-control" id="doc-title" required>
+                            <div class="invalid-feedback">Please provide a document title.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="doc-category" class="form-label">Category *</label>
+                            <select class="form-select" id="doc-category" required>
+                                <option value="">Select Category</option>
+                                <option value="bill">Bill</option>
+                                <option value="amendment">Amendment</option>
+                                <option value="report">Report</option>
+                                <option value="constitution">Constitution</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a category.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="doc-description" class="form-label">Description *</label>
+                            <textarea class="form-control" id="doc-description" rows="3" required></textarea>
+                            <div class="invalid-feedback">Please provide a description.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="doc-file" class="form-label">Upload Document (PDF only) *</label>
+                            <input type="file" class="form-control" id="doc-file" accept=".pdf" required>
+                            <div class="invalid-feedback">Please upload a PDF document.</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" form="document-submission">Submit Document</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Advanced document filtering
+    const filters = {
+        search: '',
+        category: 'all',
+        year: 'all'
+    };
+
+    function applyFilters() {
+        const totalCards = document.querySelectorAll('.document-card, .timeline-event');
+        let visibleCards = 0;
+
+        totalCards.forEach(card => {
+            const matches = card.textContent.toLowerCase().includes(filters.search) &&
+                (filters.category === 'all' || card.dataset.category === filters.category) &&
+                (filters.year === 'all' || card.dataset.year === filters.year);
+            
+            card.style.display = matches ? 'block' : 'none';
+            if (matches) visibleCards++;
+        });
+
+        // Update the count of visible cards
+        updateVisibleCount(visibleCards, totalCards.length);
+    }
+
+    function updateVisibleCount(visible, total) {
+        const countDisplay = document.getElementById('visible-count');
+        countDisplay.textContent = `Showing ${visible} of ${total} documents`;
+
+        // Show or hide the alert based on the number of visible cards
+        if (visible > 0) {
+            countDisplay.style.display = 'block';
+        } else {
+            countDisplay.style.display = 'none';
+        }
+    }
+
+    // Initialize filter event listeners
+    document.querySelector('.input-group input[type="search"]').addEventListener('input', e => {
+        filters.search = e.target.value.toLowerCase();
+        applyFilters();
+    });
+
+    // Category filter
+    document.querySelectorAll('.filter-row .form-select')[0].addEventListener('change', e => {
+        filters.category = e.target.value.toLowerCase(); // Ensure categories match card datasets
+        applyFilters();
+    });
+
+    // Year filter
+    document.querySelectorAll('.filter-row .form-select')[1].addEventListener('change', e => {
+        filters.year = e.target.value.toLowerCase(); // Ensure years match card datasets
+        applyFilters();
+    });
+    </script>
+</body>
+</html>

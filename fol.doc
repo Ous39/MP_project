@@ -1,0 +1,84 @@
+mp-portfolio-website/
+│
+├── index.html
+├── about.html
+├── news.html
+├── media-gallery.html
+├── events.html
+├── style.css
+├── script.js
+├── assets/
+│   └── logo.png
+│   └── profile.jpg
+│   └── banner.jpg
+│   └── social/facebook.svg
+│   └── social/twitter.svg
+│   └── video-intro.mp4
+│   └── press-coverage.jpg
+│   └── event-banner.jpg
+├── js/
+│   └── carousel.js
+│   └── event-calendar.js
+└── css/
+    └── animations.css
+
+
+    <div class="hero" id="hero">
+    <div class="hero-content">
+        <h1 id="hero-title">Building Tomorrow's Banjul Together</h1>
+        <p class="lead" id="hero-description">Empowering Communities, Transforming Lives</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const heroData = [
+            {
+                title: "Building Tomorrow's Banjul Together",
+                description: "Join us in creating impactful change.",
+                background: "url('background1.jpg')"
+            },
+            {
+                title: "Empowering Communities, Transforming Lives",
+                description: "Together, we can achieve more.",
+                background: "url('background2.jpg')"
+            },
+            {
+                title: "Sustainable Development for All",
+                description: "Investing in our community's future.",
+                background: "url('background3.jpg')"
+            },
+            {
+                title: "Innovating for a Brighter Future",
+                description: "Innovation starts with collaboration.",
+                background: "url('background4.jpg')"
+            },
+            {
+                title: "Your Voice Matters: Get Involved!",
+                description: "Your participation is key to progress.",
+                background: "url('background5.jpg')"
+            },
+            {
+                title: "Together We Rise: Unity in Action",
+                description: "Let's work together for a better tomorrow.",
+                background: "url('background6.jpg')"
+            }
+        ];
+
+        let index = 0;
+
+        function updateHeroContent() {
+            const currentData = heroData[index];
+            document.getElementById("hero-title").textContent = currentData.title;
+            document.getElementById("hero-description").textContent = currentData.description;
+            document.getElementById("hero").style.backgroundImage = currentData.background;
+            index = (index + 1) % heroData.length; // Loop back to the start
+        }
+
+        // Update every 5 seconds
+        setInterval(updateHeroContent, 5000);
+        updateHeroContent(); // Initial display
+    });
+</script>
+
+    <iframe width="853" height="480" src="https://www.youtube.com/embed/wg5dvEba914" title="𝐁𝐀𝐍𝐉𝐔𝐋  𝐂𝐄𝐍𝐓𝐑𝐀𝐋 𝐂𝐎𝐍𝐒𝐓𝐈𝐓𝐔𝐄𝐍𝐂𝐘 𝐎𝐅𝐅𝐈𝐂𝐄 𝐇𝐀𝐒 𝐁𝐄𝐄𝐍 𝐃𝐔𝐋𝐘 𝐈𝐍𝐀𝐔𝐆𝐔𝐑𝐀𝐓𝐄𝐃" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

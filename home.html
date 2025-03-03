@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Banjul Central Constituency - Building a Brighter Future Together">
+    <title>Banjul Central Constituency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.8/glider.min.css">
+   <style>
+    :root {
+    --primary-color: #1a4d8f;
+    --secondary-color: #5ba4e6;
+    --accent-color: #ff9f43;
+    --success-color: #4CAF50;
+    --warning-color: #FFC107;
+    --error-color: #F44336;
+    --text-dark: #2C3E50;
+    --text-light: #F9F9F9;
+    --gradient-blue: linear-gradient(135deg, #1a4d8f 0%, #5ba4e6 100%);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: #f9f9f9;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Header Styles */
+header {
+    background: var(--gradient-blue);
+    color: var(--text-light);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(8px);
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    transform: translateX(4px);
+}
+
+.logo i {
+    color: var(--accent-color);
+    font-size: 1.2em;
+}
+
+/* Hero Section */
+.hero {
+    height: 80vh;
+    background: var(--gradient-blue), url('hero-image.jpg') center/cover;
+    background-blend-mode: multiply;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-light);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 800px;
+    animation: fadeInUp 0.8s ease-out;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Layout */
+.main-container {
+    max-width: 1400px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: minmax(300px, 350px) 1fr;
+    gap: 3rem;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 6rem;
+    height: min-content;
+}
+
+.sidebar-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Card Design */
+.card {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    margin: 1rem 0;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Grid Systems */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    place-items: center;
+}
+
+/* Progress Bar */
+.progress-bar {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 100px;
+    overflow: hidden;
+    height: 10px;
+}
+
+.progress {
+    background: var(--primary-color);
+    height: 100%;
+    border-radius: 100px;
+    transition: width 0.8s ease-in-out;
+}
+
+/* Interactive Elements */
+
+        /* Interactive Poll */
+        .poll-options {
+            display: grid;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .poll-btn {
+            background: rgba(26, 77, 143, 0.1);
+            color: var(--primary-color);
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .poll-btn:hover {
+            background: rgba(26, 77, 143, 0.2);
+        }
+
+        .poll-btn.selected {
+            background: var(--primary-color);
+            color: white;
+        }
+
+
+.poll-btn.selected {
+    background: var(--primary-color);
+    color: var(--text-light);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .sidebar {
+        position: static;
+        margin-bottom: 2rem;
+    }
+
+    .hero {
+        height: 65vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 60vh;
+        padding: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.25rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Partner Logo Styles */
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust as needed */
+    gap: 2rem;
+    place-items: center;
+}
+
+.partner-logo {
+    width: 100%; /* Use full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: var(--radius-md); /* Use variable for consistency */
+    transition: transform 0.3s; /* Smooth scaling effect */
+}
+
+.partner-card {
+    display: none; /* Hide all cards initially */
+    text-align: center; /* Center text inside cards */
+}
+
+.partner-card.active {
+    display: block; /* Show active cards */
+}
+
+
+
+.map-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+}
+
+.interactive-map {
+    display: none; /* Hide all cards initially */
+    text-align: center; /* Center text inside cards */
+}
+
+.interactive-map.active {
+    display: block; /* Show active cards */
+}
+
+.map-placeholder {
+    padding: 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    background: white;
+    transition: transform 0.3s; /* Smooth scaling effect */
+}
+
+.map-placeholder:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* About Section Styles */
+#about-section {
+    background-color: #ffffff; /* Clean white background */
+    padding: 4rem 0; /* Top and bottom padding */
+    border-top: 5px solid var(--primary-color); /* Bold top border for emphasis */
+    box-shadow: var(--shadow-md); /* Subtle shadow for depth */
+}
+
+#about-section .about-container {
+    max-width: 1200px; /* Limit max width */
+    margin: 0 auto; /* Center the container */
+    padding: 0 2rem; /* Side padding */
+}
+
+#about-section .about-title {
+    font-size: 2.5rem; /* Large section title */
+    color: var(--primary-color); /* Primary color for the title */
+    text-align: center; /* Center the title */
+    margin-bottom: 2rem; /* Space below title */
+    font-family: 'Arial', sans-serif; /* Clean sans-serif font */
+    text-transform: uppercase; /* Uppercase for emphasis */
+}
+
+#about-section .about-grid {
+    display: flex; /* Flexbox for layout */
+    flex-direction: row; /* Row layout */
+    justify-content: space-between; /* Space between columns */
+    align-items: center; /* Center items vertically */
+    gap: 2rem; /* Space between items */
+}
+
+#about-section .about-image-container {
+    flex: 1; /* Take up equal space */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center image */
+}
+
+#about-section .about-image {
+    width: 100%; /* Full width */
+    max-width: 350px; /* Max width for image */
+    border-radius: var(--radius-md); /* Rounded corners */
+    box-shadow: var(--shadow-md); /* Soft shadow for depth */
+    transition: transform var(--transition); /* Smooth transform */
+}
+
+#about-section .about-image-container:hover .about-image {
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+#about-section .about-content {
+    flex: 2; /* Take up more space */
+    text-align: left; /* Align text to the left */
+}
+
+#about-section .about-subtitle {
+    font-size: 2rem; /* Size for the subtitle */
+    color: var(--text-dark); /* Dark text color */
+    margin-bottom: 1rem; /* Space below subtitle */
+    font-weight: bold; /* Bold subtitle */
+}
+
+#about-section .about-description {
+    font-size: 1.1rem; /* Standard text size */
+    color: var(--text-dark); /* Dark text color */
+    margin-bottom: 1.5rem; /* Space below paragraph */
+    line-height: 1.6; /* Improved line height for readability */
+}
+
+#about-section .policy-list {
+    list-style: none; /* Remove default list styles */
+    padding: 0; /* Remove padding */
+    margin: 1rem 0; /* Space above and below */
+}
+
+#about-section .policy-item {
+    display: flex; /* Flex for icon and text */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 0.75rem; /* Space below each item */
+    font-size: 1rem; /* Standard text size */
+    color: var(--text-dark); /* Dark text color */
+}
+
+#about-section .policy-item i {
+    color: var(--primary-color); /* Color for icons */
+    margin-right: 0.5rem; /* Space between icon and text */
+}
+
+#about-section .cta-button {
+    display: inline-flex; /* Flex for button */
+    align-items: center; /* Center items */
+    padding: 0.75rem 1.5rem; /* Padding for button */
+    background: var(--primary-color); /* Primary background */
+    color: var(--text-light); /* White text color */
+    border: none; /* No border */
+    border-radius: var(--radius-lg); /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    transition: background var(--transition), transform var(--transition); /* Smooth transition */
+}
+
+#about-section .cta-button:hover {
+    background: var(--secondary-color); /* Change to secondary color on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+#about-section .cta-button i {
+    margin-left: 0.5rem; /* Space between text and icon */
+}
+
+
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.countdown-unit {
+    background: var(--secondary-color);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.countdown-value {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-light);
+}
+
+.countdown-label {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-left: 0px;
+}
+
+.progress-container {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 100px;
+    overflow: hidden;
+    height: 10px;
+    margin-top: 1rem;
+}
+
+.progress {
+    background: var(--primary-color);
+    height: 100%;
+    width: 0; /* Start with 0 width */
+    border-radius: 100px;
+    transition: width 0.4s ease-in-out;
+}
+
+.event-status {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.auto-up {
+    cursor: pointer; /* Change cursor to pointer for interactivity */
+}
+
+
+
+   </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-landmark"></i>
+                Banjul Central
+            </div>
+            <nav>
+                <a href="#updates" class="btn">Updates</a>
+                <a href="#projects" class="btn">Projects</a>
+                <a href="#contact" class="btn">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1 id="hero-title">Building Tomorrow's Banjul Together</h1>
+            <p class="lead" id="hero-description">Empowering Communities, Transforming Lives</p>
+        </div>
+    </div>
+
+    <!-- About Section -->
+<section id="about-section">
+    <div class="about-container">
+        <h2 class="about-title">Hon. Abdoulie Njai</h2>
+        <div class="about-grid">
+            <div class="about-image-container">
+                <img src="assets/image/mp_photo.jpg" alt="Hon. Abdoulie Njai" class="about-image">
+            </div>
+            <div class="about-content">
+                <h3 class="about-subtitle">Dedicated Public Servant</h3>
+                <p class="about-description">Elected in 2022, transforming Banjul Central through:</p>
+                <ul class="policy-list">
+                    <li class="policy-item"><i class="fas fa-book-open"></i> Education Reform</li>
+                    <li class="policy-item"><i class="fas fa-hospital"></i> Healthcare Access</li>
+                    <li class="policy-item"><i class="fas fa-leaf"></i> Sustainable Development</li>
+                    <li class="policy-item"><i class="fas fa-chart-line"></i> Economic Growth</li>
+                </ul>
+                <a href="biograph.html" class="cta-button outline">Full Biography <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+    <hr>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <!-- Interactive Live Updates -->
+            <section class="sidebar-section auto-up">
+                <h2>Live Updates</h2>
+                <div class="live-feed">
+                    <div class="card pulse" id="live-update-1">
+                        <h3>🚨 Community Meeting</h3>
+                        <p>Today at 5 PM - City Hall</p>
+                    </div>
+                    <div class="card pulse" id="live-update-2" style="display: none;">
+                        <h3>🎉 Project Launch</h3>
+                        <p>Market Renovation Starts Monday</p>
+                    </div>
+                    <div class="card pulse" id="live-update-3" style="display: none;">
+                        <h3>🌍 Community Clean-Up</h3>
+                        <p>This Saturday at 10 AM - Community Park</p>
+                    </div>
+                    <div class="countdown-container card pulse">
+                        <p>Event Timing: <strong>February 24, 2025 @ 3:00 PM to February 24, 2025 @ 5:00 PM</strong></p>
+                        <div class="countdown" id="countdown"></div>
+                        <div class="progress-container">
+                            <div class="progress" id="progress"></div>
+                        </div>
+                        <div class="event-status" id="event-status" aria-live="polite">Loading...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Poll -->
+            <section class="sidebar-section">
+                <h2>Community Poll</h2>
+                <div class="card">
+                    <p>What's your top priority for improvement?</p>
+                    <div class="poll-options">
+                        <button class="poll-btn">Healthcare</button>
+                        <button class="poll-btn">Education</button>
+                        <button class="poll-btn">Infrastructure</button>
+                    </div>
+                    <div class="poll-results" style="display: none;">
+                        <!-- Results will be populated here -->
+                    </div>
+                </div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <!-- Project Showcase Carousel -->
+            <section class="section" id="projects">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="card">
+                        <img src="assets/image/giraffe.jpg" alt="Market Renovation" style="width: 100%; border-radius: 15px;">
+                        <h3>Market Modernization</h3>
+                        <p>Revitalizing Banjul Central Market with modern facilities</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="project2.jpg" alt="Project 2" style="width: 100%; border-radius: 15px;">
+                        <h3>Project Title 2</h3>
+                        <p>Brief description of project 2.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="project3.jpg" alt="Project 3" style="width: 100%; border-radius: 15px;">
+                        <h3>Project Title 3</h3>
+                        <p>Brief description of project 3.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+           <!-- Interactive Map Section -->
+<section class="section" id="map">
+    <h2 class="section-title">Project Locations</h2>
+    <div class="map-grid">
+        <div class="card interactive-map">
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt" style="font-size: 2rem;"></i>
+                <p>Location 1</p>
+            </div>
+        </div>
+        <div class="card interactive-map">
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt" style="font-size: 2rem;"></i>
+                <p>Location 2</p>
+            </div>
+        </div>
+        <div class="card interactive-map">
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt" style="font-size: 2rem;"></i>
+                <p>Location 3</p>
+            </div>
+        </div>
+        <div class="card interactive-map">
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt" style="font-size: 2rem;"></i>
+                <p>Location 4</p>
+            </div>
+        </div>
+        <div class="card interactive-map">
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt" style="font-size: 2rem;"></i>
+                <p>Location 5</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <!-- Dynamic Statistics -->
+            <section class="section" id="stats">
+                <h2 class="section-title">Impact in Numbers</h2>
+                <div class="stats-grid">
+                    <div class="card stat-card">
+                        <h3>15,000+</h3>
+                        <p>Residents Engaged</p>
+                    </div>
+                    <div class="card stat-card">
+                        <h3>₵5.2M</h3>
+                        <p>Invested in Development</p>
+                    </div>
+                    <div class="card stat-card">
+                        <h3>94%</h3>
+                        <p>Project Completion Rate</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Partners Section -->
+            <section class="section" id="partners">
+                <h2 class="section-title">Our Partners</h2>
+                <div class="partners-grid">
+                    <div class="card partner-card active">
+                        <img src="assets/image/central_logo.png" alt="Partner 1" class="partner-logo">
+                        <h3>Partner 1</h3>
+                        <p>Brief description of Partner 1's contributions and collaboration.</p>
+                    </div>
+                    <div class="card partner-card">
+                        <img src="assets/image/central_logo.png" alt="Partner 2" class="partner-logo">
+                        <h3>Partner 2</h3>
+                        <p>Brief description of Partner 2's contributions and collaboration.</p>
+                    </div>
+                    <div class="card partner-card">
+                        <img src="assets/image/central_logo.png" alt="Partner 3" class="partner-logo">
+                        <h3>Partner 3</h3>
+                        <p>Brief description of Partner 3's contributions and collaboration.</p>
+                    </div>
+                    <div class="card partner-card">
+                        <img src="assets/image/central_logo.png" alt="Partner 4" class="partner-logo">
+                        <h3>Partner 4</h3>
+                        <p>Brief description of Partner 4's contributions and collaboration.</p>
+                    </div>
+                    <div class="card partner-card">
+                        <img src="assets/image/central_logo.png" alt="Partner 5" class="partner-logo">
+                        <h3>Partner 5</h3>
+                        <p>Brief description of Partner 5's contributions and collaboration.</p>
+                    </div>
+                    <div class="card partner-card">
+                        <img src="assets/image/central_logo.png" alt="Partner 6" class="partner-logo">
+                        <h3>Partner 6</h3>
+                        <p>Brief description of Partner 6's contributions and collaboration.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+<hr>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Get Involved</h4>
+                <ul>
+                    <li><a href="#volunteer">Volunteer</a></li>
+                    <li><a href="#donate">Donate</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Banjul Central Constituency. Committed to Progress.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.8/glider.min.js"></script>
+
+
+
+    <script>
+        // Configuration
+        const events = {
+            current: {
+                title: "Community Gathering",
+                date: "2025-02-27T15:00:00", // Event start date
+                endDate: "2025-02-27T17:00:00", // Event end date
+                location: "Central Community Hall"
+            }
+        };
+    
+        // DOM Elements
+        const countdownEl = document.getElementById('countdown');
+        const progressEl = document.getElementById('progress');
+        const eventStatusEl = document.getElementById('event-status');
+    
+        // Countdown Timer
+        function updateCountdown() {
+            const eventDate = new Date(events.current.date).getTime();
+            const endDate = new Date(events.current.endDate).getTime();
+            const now = new Date().getTime();
+            const difference = eventDate - now;
+            const endDifference = endDate - now;
+    
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    
+                countdownEl.innerHTML = `
+                    <div class="countdown-unit">
+                        <div class="countdown-value">${days}</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-value">${hours}</div>
+                        <div class="countdown-label">Hrs</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-value">${minutes}</div>
+                        <div class="countdown-label">Mis</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-value">${seconds}</div>
+                        <div class="countdown-label">Secs</div>
+                    </div>
+                `;
+    
+                const totalTime = eventDate - new Date(events.current.date).setHours(0, 0, 0, 0);
+                const progress = ((totalTime - difference) / totalTime) * 100;
+                progressEl.style.width = `${Math.min(progress, 100)}%`;
+                eventStatusEl.textContent = "Upcoming...";
+    
+            } else if (endDifference > 0) {
+                // Event is ongoing
+                eventStatusEl.textContent = "Ongoing...";
+                countdownEl.innerHTML = '<div class="event-live">LIVE NOW</div>';
+            } else {
+                // Event has ended
+                eventStatusEl.textContent = "This event has ended! Stay tuned for upcoming activities!";
+                countdownEl.style.display = 'none'; // Hide countdown
+                progressEl.style.width = "100%"; // Fill progress bar
+            }
+        }
+    
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call to display countdown immediately
+    </script>
+
+    <script>
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const mapCards = Array.from(document.querySelectorAll('.interactive-map'));
+            const totalCards = mapCards.length;
+            const displayCount = 4; // Number of locations to display at a time
+            let currentIndices = [];
+    
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+    
+            function showMaps(indices) {
+                mapCards.forEach((card, i) => {
+                    card.classList.toggle('active', indices.includes(i));
+                });
+            }
+    
+            function cycleMaps() {
+                shuffleArray(currentIndices);
+                const startIndex = currentIndices.slice(0, displayCount);
+                showMaps(startIndex);
+            }
+    
+            // Initialize and shuffle indices
+            currentIndices = mapCards.map((_, index) => index);
+            shuffleArray(currentIndices);
+    
+            // Show the first set of locations initially
+            cycleMaps();
+    
+            // Cycle every 5 seconds
+            setInterval(cycleMaps, 5000);
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const partnerCards = Array.from(document.querySelectorAll('.partner-card'));
+            const totalCards = partnerCards.length;
+            const displayCount = 4; // Number of partners to display at a time
+            let currentIndices = [];
+    
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+    
+            function showPartners(indices) {
+                partnerCards.forEach((card, i) => {
+                    card.classList.toggle('active', indices.includes(i));
+                });
+            }
+    
+            function cyclePartners() {
+                shuffleArray(currentIndices);
+                const startIndex = currentIndices.slice(0, displayCount);
+                showPartners(startIndex);
+            }
+    
+            // Initialize and shuffle indices
+            currentIndices = partnerCards.map((_, index) => index);
+            shuffleArray(currentIndices);
+    
+            // Show the first set of partners initially
+            cyclePartners();
+    
+            // Cycle every 5 seconds
+            setInterval(cyclePartners, 5000);
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const heroTitles = [
+                "Building Tomorrow's Banjul Together",
+                "Empowering Communities, Transforming Lives",
+                "Sustainable Development for All",
+                "Innovating for a Brighter Future",
+                "Your Voice Matters: Get Involved!",
+                "Together We Rise: Unity in Action",
+                "Serving Banjul Central with Integrity & Vision"
+            ];
+    
+            const heroDescriptions = [
+                "Join us in creating impactful change.",
+                "Together, we can achieve more.",
+                "Investing in our community's future.",
+                "Innovation starts with collaboration.",
+                "Your participation is key to progress.",
+                "Let's work together for a better tomorrow.",
+                "Advocating for Progressive Change Since 2022"
+            ];
+    
+            let index = 0;
+    
+            function updateHeroContent() {
+                document.getElementById("hero-title").textContent = heroTitles[index];
+                document.getElementById("hero-description").textContent = heroDescriptions[index];
+                index = (index + 1) % heroTitles.length; // Loop back to the start
+            }
+    
+            // Update every 5 seconds
+            setInterval(updateHeroContent, 5000);
+        });
+    </script>
+    <script>
+        // Initialize Glider Carousel
+        new Glider(document.querySelector('.glider'), {
+            slidesToShow: 1,
+            dots: '.dots',
+            arrows: {
+                prev: '.glider-prev',
+                next: '.glider-next'
+            },
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                },
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                }
+            ]
+        });
+
+        // // Live Updates Auto-Cycling
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     const liveUpdates = document.querySelectorAll('.live-feed .card');
+        //     let liveUpdateIndex = 0;
+
+        //     function showLiveUpdate(index) {
+        //         liveUpdates.forEach((update, i) => {
+        //             update.style.display = (i === index) ? 'block' : 'none';
+        //         });
+        //     }
+
+        //     function cycleLiveUpdates() {
+        //         liveUpdateIndex = (liveUpdateIndex + 1) % liveUpdates.length;
+        //         showLiveUpdate(liveUpdateIndex);
+        //     }
+
+            // Set interval for cycling through updates
+        //     setInterval(cycleLiveUpdates, 500); // Change every 5 seconds
+        //     showLiveUpdate(liveUpdateIndex); // Initial display
+        // });
+
+        // Form Submission Handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will respond shortly.');
+            this.reset();
+        });
+    </script>
+
+<script>
+    // Interactive Live Updates Cycling with Pause on Hover
+document.addEventListener("DOMContentLoaded", function() {
+    const liveUpdates = document.querySelectorAll('.live-feed .card');
+    let liveUpdateIndex = 0;
+    let liveUpdateInterval;
+
+    function showLiveUpdate(index) {
+        liveUpdates.forEach((update, i) => {
+            update.style.display = (i === index) ? 'block' : 'none';
+        });
+    }
+
+    function cycleLiveUpdates() {
+        liveUpdateIndex = (liveUpdateIndex + 1) % liveUpdates.length;
+        showLiveUpdate(liveUpdateIndex);
+    }
+
+    function startCycling() {
+        liveUpdateInterval = setInterval(cycleLiveUpdates, 5000); // Change every 5 seconds
+        showLiveUpdate(liveUpdateIndex); // Initial display
+    }
+
+    function stopCycling() {
+        clearInterval(liveUpdateInterval);
+    }
+
+    // Start cycling updates
+    startCycling();
+
+    // Pause cycling on hover
+    const liveFeedSection = document.querySelector('.auto-up'); // Adjust selector as needed
+    liveFeedSection.addEventListener('mouseenter', stopCycling);
+    liveFeedSection.addEventListener('mouseleave', startCycling);
+});
+
+    // Interactive poll
+    document.querySelectorAll('.poll-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                // Add analytics and real-time update logic
+            });
+        });
+    </script>
+
+</body>
+</html>
